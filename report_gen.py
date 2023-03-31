@@ -1,5 +1,9 @@
 from excel_methods import *
 
+# TO-DO:
+    # if not friday, aproximate to friday.
+
+
 
 file_list = get_file_names()
 
@@ -70,7 +74,7 @@ while True:
     c += 1
 
     
-    if all_weeks[len(all_weeks)-1]+td >= dates[len(dates)-1]:
+    if all_weeks[len(all_weeks)-1]+td > dates[len(dates)-1]:
         break
 
 
@@ -114,12 +118,13 @@ for i, lst in enumerate(people.values()):
     for item in lst:  
         
         row = str(i + 3)
-        
-        # define the column logic right over here, the logic was not working
-        # properly  the other way around. 
-        # Validation is on point, just need the proper column number
+        col = 1
         
         for j in range(0, len(all_weeks)):
+            
+            col += 1
+            char = get_column_letter(col)
+            
             
             if date_conversion(item.split("_")[1]) == all_weeks[j]:
                 # OUTPUT THE PROCESSED YAML DATA HERE!!!  
