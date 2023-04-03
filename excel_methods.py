@@ -11,6 +11,7 @@ from time import sleep
 import yaml
 
 from openpyxl.chart import (
+    BarChart,
     PieChart,
     ProjectedPieChart,
     Reference
