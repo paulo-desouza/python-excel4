@@ -93,7 +93,7 @@ wb = Workbook()
 
 ws = wb.active
 
-ws.title = "Charts"
+ws.title = "OVERVIEW"
 
 
 
@@ -149,27 +149,47 @@ ca_outbound_goals =    ["Outbound Goals"]
 ca_links_goals =       ["Links Sent Goals"]
 ca_enrolled_goals =    ["Enrolled Goals"]
 
+masterlist = [ce_inbound_reported, ce_outbound_reported, ce_visits_reported, ce_enrolled_reported,
+              ce_fte_reported, ce_inbound_goals, ce_outbound_goals, ce_visits_goals, ce_enrolled_goals,
+              ce_fte_goals, ca_inbound_reported, ca_outbound_reported, ca_links_reported, 
+              ca_enrolled_reported, ca_inbound_goals, ca_outbound_goals, ca_links_goals, 
+              ca_enrolled_goals]
 
-for i, lst in enumerate(people.values()):
+
+
+people_dates = []
+
+for i, f in enumerate(people.values()):
     
-    for item in lst:  
+    people_dates.append([])
+    
+    for d in f:
         
-        row = str(i + 3)
-        col = 1
-      
-        for j in range(0, len(all_weeks)):
-            
-            
-            col += 1
-            char = get_column_letter(col)
-            
-            
-            if date_conversion(item.split("_")[1]) == all_weeks[j]:
+        people_dates[i].append(str(date_conversion(d.split("_")[1])))
+        
+        
+
+people_keys = list(people.keys())
+
+
+for j in range(0, len(all_weeks)):
+    
+   
+    
+    for i, lst in enumerate(people.values()):
+        j_check = True
+    
+        for item in lst:  
+        
+            with open(item, 'r') as file:
+                    
+                
+                yaml_data = yaml.safe_load(file)
+                
+             
                 
                 
-                
-                with open(item, 'r') as file:
-                    yaml_data = yaml.safe_load(file)
+                if date_conversion(item.split("_")[1]) == all_weeks[j]:
                     
                     
                     ce_inbound_reported.append((yaml_data["EA"],
@@ -250,8 +270,21 @@ for i, lst in enumerate(people.values()):
                     ca_enrolled_goals.append((yaml_data["EA"], 
                                               yaml_data["Week"], 
                                               yaml_data['Table2']["GoalEnrolled"]))
-                
-                
+                    
+                    
+                    
+                elif str(all_weeks[j]) not in people_dates[i] and j_check == True:
+                    
+                    if people_keys[i] == yaml_data["EA"]:
+                    
+                        for data in masterlist:
+                            
+                            data.append([yaml_data["EA"], all_weeks[j], "Data Unavailable"])
+                            
+                            j_check = False
+                    
+                    
+
 
 table_weeks = all_weeks[:]
 
@@ -326,22 +359,12 @@ for name in people.keys():
             
             
             
-            
-            
-            
-            
-            
-            
-            
         elif i != 0:
             if blob[0] == name:
                 char = get_column_letter(counter)
                 
                 
-                
-                
-                
-                ws[char+"2"].value = ce_inbound_reported[i][1]
+                ws[char+"2"].value = ce_inbound_reported[i][2]
                 ws[char+"3"].value = ce_outbound_reported[i][2]
                 ws[char+"4"].value = ce_visits_reported[i][2]
                 ws[char+"5"].value = ce_enrolled_reported[i][2]
@@ -364,8 +387,6 @@ for name in people.keys():
 
 
 
-
-
                 
                 ws[char+"32"].value = ca_inbound_reported[i][2]
                 ws[char+"33"].value = ca_outbound_reported[i][2]
@@ -385,12 +406,190 @@ for name in people.keys():
                 ws[char+"46"].value = ca_enrolled_reported[i][2]
                 ws[char+"47"].value = ca_enrolled_goals[i][2]
                 
-            
-                
-                
                 counter += 1
 
+
+
+
+
+ws = wb.create_sheet("ALL CELEBREE DATA") 
+#ws.sheet_state = 'hidden'
+ws.append(table_weeks)
+
+
+
+for data in masterlist:
+    for i, d in enumerate(data):
+    
+        if i > 0 and d[2] == "Data Unavailable":
+            d[2] = 0
+
+
+
+for name in people.keys():
+    counter = 2
+
+    for i, blob in enumerate(ce_enrolled_goals):
+        
+        if i == 0:
+            ws["A2"].value = ce_inbound_reported[0]
+            ws["A3"].value = ce_outbound_reported[0]
+            ws["A4"].value = ce_visits_reported[0]
+            ws["A5"].value = ce_enrolled_reported[0]
+            ws["A6"].value = ce_fte_reported[0]
+            ws.append(table_weeks)
+            ws["A8"].value = ce_inbound_reported[0]
+            ws["A9"].value = ce_inbound_goals[0]
+            ws.append(table_weeks)
+            ws["A11"].value = ce_outbound_reported[0]
+            ws["A12"].value = ce_outbound_goals[0]
+            ws.append(table_weeks)
+            ws["A14"].value = ce_visits_reported[0]
+            ws["A15"].value = ce_visits_goals[0]
+            ws.append(table_weeks)
+            ws["A17"].value = ce_enrolled_reported[0]
+            ws["A18"].value = ce_enrolled_goals[0]
+            ws.append(table_weeks)
+            ws["A20"].value = ce_fte_reported[0]
+            ws["A21"].value = ce_fte_reported[0]
             
+            
+            for colu in range(1, len(table_weeks)+1):
+                
+                char = get_column_letter(colu)
+                ws[char+"31"].value = table_weeks[colu-1]
+                
+                
+            ws["A32"].value = ca_inbound_reported[0]
+            ws["A33"].value = ca_outbound_reported[0]
+            ws["A34"].value = ca_links_reported[0]
+            ws["A35"].value = ca_enrolled_reported[0]
+            
+            ws.append(table_weeks)
+            
+            
+            ws["A37"].value = ca_inbound_reported[0]
+            ws["A38"].value = ca_inbound_goals[0]
+            ws.append(table_weeks)
+            
+            ws["A40"].value = ca_outbound_reported[0]
+            ws["A41"].value = ca_outbound_goals[0]
+            ws.append(table_weeks)
+            
+            ws["A43"].value = ca_links_reported[0]
+            ws["A44"].value = ca_links_goals[0]
+            ws.append(table_weeks)
+            
+            ws["A46"].value = ca_enrolled_reported[0]
+            ws["A47"].value = ca_enrolled_goals[0]
+            
+            
+            
+            
+        else:
+            
+            if blob[0] == name:
+            
+                char = get_column_letter(counter)
+                
+                ws[char+"2"].value = 0
+                ws[char+"3"].value = 0
+                ws[char+"4"].value = 0
+                ws[char+"5"].value = 0
+                ws[char+"6"].value = 0
+                
+                ws[char+"8"].value = 0
+                ws[char+"9"].value = 0
+                
+                ws[char+"11"].value = 0
+                ws[char+"12"].value = 0
+                
+                ws[char+"14"].value = 0
+                ws[char+"15"].value = 0
+                
+                ws[char+"17"].value = 0
+                ws[char+"18"].value = 0
+                
+                ws[char+"20"].value = 0
+                ws[char+"21"].value = 0
+    
+                ws[char+"32"].value = 0
+                ws[char+"33"].value = 0
+                ws[char+"34"].value = 0
+                ws[char+"35"].value = 0
+                
+                
+                ws[char+"37"].value = 0
+                ws[char+"38"].value = 0
+                
+                ws[char+"40"].value = 0
+                ws[char+"41"].value = 0
+                
+                ws[char+"43"].value = 0
+                ws[char+"44"].value = 0
+                
+                ws[char+"46"].value = 0
+                ws[char+"47"].value = 0
+                
+                counter += 1
+            
+
+
+for name in people.keys():
+    counter = 2
+
+    for i, blob in enumerate(ce_enrolled_goals):
+        
+        if i > 0 and blob[0] == name:
+            
+            char = get_column_letter(counter)
+            
+
+            
+            ws[char+"2"].value += ce_inbound_reported[i][2]
+            ws[char+"3"].value += ce_outbound_reported[i][2]
+            ws[char+"4"].value += ce_visits_reported[i][2]
+            ws[char+"5"].value += ce_enrolled_reported[i][2]
+            ws[char+"6"].value += ce_fte_reported[i][2]
+            
+            ws[char+"8"].value += ce_inbound_reported[i][2]
+            ws[char+"9"].value += ce_inbound_goals[i][2]
+            
+            ws[char+"11"].value += ce_outbound_reported[i][2]
+            ws[char+"12"].value += ce_outbound_goals[i][2]
+            
+            ws[char+"14"].value += ce_visits_reported[i][2]
+            ws[char+"15"].value += ce_visits_goals[i][2]
+            
+            ws[char+"17"].value += ce_enrolled_reported[i][2]
+            ws[char+"18"].value += ce_enrolled_goals[i][2]
+            
+            ws[char+"20"].value += ce_fte_reported[i][2]
+            ws[char+"21"].value += ce_fte_reported[i][2]
+
+
+
+            
+            ws[char+"32"].value += ca_inbound_reported[i][2]
+            ws[char+"33"].value += ca_outbound_reported[i][2]
+            ws[char+"34"].value += ca_links_reported[i][2]
+            ws[char+"35"].value += ca_enrolled_reported[i][2]
+            
+            
+            ws[char+"37"].value += ca_inbound_reported[i][2]
+            ws[char+"38"].value += ca_inbound_goals[i][2]
+            
+            ws[char+"40"].value += ca_outbound_reported[i][2]
+            ws[char+"41"].value += ca_outbound_goals[i][2]
+            
+            ws[char+"43"].value += ca_links_reported[i][2]
+            ws[char+"44"].value += ca_links_goals[i][2]
+            
+            ws[char+"46"].value += ca_enrolled_reported[i][2]
+            ws[char+"47"].value += ca_enrolled_goals[i][2]
+        
+        
+            counter += 1
         
         
         
