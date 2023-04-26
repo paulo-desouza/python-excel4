@@ -11,13 +11,17 @@ from time import sleep
 import yaml
 
 from openpyxl.chart import (
+    LineChart,
     BarChart,
     PieChart,
     ProjectedPieChart,
-    Reference
+    Reference,
+    Series
 )
 from openpyxl.chart.series import DataPoint
 from openpyxl.chart.label import DataLabelList
+from openpyxl.chart.axis import DateAxis
+from openpyxl.chart.data_source import NumRef, NumDataSource
 
 
 
