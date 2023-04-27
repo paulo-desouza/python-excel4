@@ -242,8 +242,8 @@ def date_conversion(date_string):
     
     
     y = int(date[2].split(".")[0])
-    m = int(date[1])
-    d = int(date[0])
+    m = int(date[0])
+    d = int(date[1])
 
     return datetime(y, m, d)
 
