@@ -996,6 +996,7 @@ else:
     
     
     # we need to now convert the code into monthly stuff. 
+    
     dates = []
     
     for file in file_list: 
@@ -1018,6 +1019,8 @@ else:
             
     month_list = list(all_months.keys())
             
+        
+        
         
     for file in file_list:
     
@@ -1050,8 +1053,8 @@ else:
     
     ca_inbound_reported =  ["Inbound Calls"]
     ca_outbound_reported = ["Outbound Calls"]
-    ca_links_reported =   ["Links Sent"]
-    ca_enrolled_reported =    ["Enrolled"]
+    ca_links_reported =    ["Links Sent"]
+    ca_enrolled_reported = ["Enrolled"]
     
     ca_inbound_goals =     ["Inbound Goals"]
     ca_outbound_goals =    ["Outbound Goals"]
@@ -1063,6 +1066,19 @@ else:
                   ce_fte_goals, ca_inbound_reported, ca_outbound_reported, ca_links_reported, 
                   ca_enrolled_reported, ca_inbound_goals, ca_outbound_goals, ca_links_goals, 
                   ca_enrolled_goals]
+    
+    
+    # list of first weeks
+    the_list = []
+    
+    for month in all_months.values():
+        
+        the_list.append(month[0])
+        
+    
+    
+    
+    
     
     cc = 1
     for name in people.keys():
@@ -1076,7 +1092,7 @@ else:
                     yaml_data = yaml.safe_load(file)
                     
                     
-                    if i == 0 and name == yaml_data["EA"]:
+                    if date_conversion(week.split("_")[1].split(".")[0]) in the_list and name == yaml_data["EA"]:
                 
                             
                         ce_inbound_reported.append([yaml_data["EA"],
@@ -1219,7 +1235,7 @@ else:
         counter = 2
         
         ws = wb.create_sheet(name + " CELEBREE DATA") 
-        #ws.sheet_state = 'hidden'
+        ws.sheet_state = 'hidden'
         ws.append(table_months)
         
         for i, blob in enumerate(ce_enrolled_goals):
@@ -1578,7 +1594,7 @@ else:
      
     
     ws = wb.create_sheet("ALL CELEBREE DATA") 
-    #ws.sheet_state = 'hidden'
+    ws.sheet_state = 'hidden'
     ws.append(table_months)
     
     
