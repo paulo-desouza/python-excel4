@@ -365,7 +365,7 @@ if monthly == False:
     
             # GENERAL OVERVIEW ChART (CELEBREE)
                     
-        c_all = LineChart()
+        c_all = BarChart()
         c_all.title = "Client Conversion Pipeline Chart (Celebree)"
         c_all.style = 2
         c_all.y_axis.title = 'CALLS'
@@ -387,7 +387,7 @@ if monthly == False:
     
         # INBOUND OVERVIEW 
     
-        c_inb = LineChart()
+        c_inb = BarChart()
         c_inb.title = "Inbound Calls (Celebree)"
         c_inb.style = 3
         c_inb.y_axis.title = 'CALLS'
@@ -412,7 +412,7 @@ if monthly == False:
     
         # OUTBOUND OVERVIEW 
     
-        c_out = LineChart()
+        c_out = BarChart()
         c_out.title = "Outbound Calls (Celebree)"
         c_out.style = 4
         c_out.y_axis.title = 'CALLS'
@@ -435,7 +435,7 @@ if monthly == False:
     
         # VISITS SCHEDULED OVERVIEW
     
-        c_vis = LineChart()
+        c_vis = BarChart()
         c_vis.title = "Visits Scheduled (Celebree)"
         c_vis.style = 5
         c_vis.y_axis.title = 'CALLS'
@@ -456,7 +456,7 @@ if monthly == False:
     
         # ENROLLED OVERVIEW
     
-        c_enr = LineChart()
+        c_enr = BarChart()
         c_enr.title = "Enrolled (Celebree)"
         c_enr.style = 6
         c_enr.y_axis.title = 'CALLS'
@@ -476,7 +476,7 @@ if monthly == False:
     
         # FTE OVERVIEW
     
-        c_fte = LineChart()
+        c_fte = BarChart()
         c_fte.title = "FTE Enrolled (Celebree)"
         c_fte.style = 7
         c_fte.y_axis.title = 'CALLS'
@@ -495,7 +495,7 @@ if monthly == False:
     
         # GENERAL OVERVIEW ChART (Caliday)
                     
-        ca_all = LineChart()
+        ca_all = BarChart()
         ca_all.title = "Client Conversion Pipeline Chart (Caliday)"
         ca_all.style = 2
         ca_all.y_axis.title = 'CALLS'
@@ -514,7 +514,7 @@ if monthly == False:
     
         # INBOUND OVERVIEW 
     
-        ca_inb = LineChart()
+        ca_inb = BarChart()
         ca_inb.title = "Inbound Calls (Caliday)"
         ca_inb.style = 3
         ca_inb.y_axis.title = 'CALLS'
@@ -536,7 +536,7 @@ if monthly == False:
     
         # OUTBOUND OVERVIEW 
     
-        ca_out = LineChart()
+        ca_out = BarChart()
         ca_out.title = "Outbound Calls (Caliday)"
         ca_out.style = 4
         ca_out.y_axis.title = 'CALLS'
@@ -556,7 +556,7 @@ if monthly == False:
     
         # VISITS SCHEDULED OVERVIEW
     
-        ca_vis = LineChart()
+        ca_vis = BarChart()
         ca_vis.title = "Links Sent (Caliday)"
         ca_vis.style = 5
         ca_vis.y_axis.title = 'CALLS'
@@ -576,7 +576,7 @@ if monthly == False:
     
         # ENROLLED OVERVIEW
     
-        ca_enr = LineChart()
+        ca_enr = BarChart()
         ca_enr.title = "Enrolled (Caliday)"
         ca_enr.style = 6
         ca_enr.y_axis.title = 'CALLS'
@@ -1342,7 +1342,7 @@ else:
         
              # GENERAL OVERVIEW ChART (CELEBREE)
                     
-        c_all = LineChart()
+        c_all = BarChart()
         c_all.title = "Client Conversion Pipeline Chart (Celebree)"
         c_all.style = 2
         c_all.y_axis.title = 'CALLS'
@@ -1364,7 +1364,7 @@ else:
     
         # INBOUND OVERVIEW 
     
-        c_inb = LineChart()
+        c_inb = BarChart()
         c_inb.title = "Inbound Calls (Celebree)"
         c_inb.style = 3
         c_inb.y_axis.title = 'CALLS'
@@ -1389,7 +1389,7 @@ else:
     
         # OUTBOUND OVERVIEW 
     
-        c_out = LineChart()
+        c_out = BarChart()
         c_out.title = "Outbound Calls (Celebree)"
         c_out.style = 4
         c_out.y_axis.title = 'CALLS'
@@ -1412,7 +1412,7 @@ else:
     
         # VISITS SCHEDULED OVERVIEW
     
-        c_vis = LineChart()
+        c_vis = BarChart()
         c_vis.title = "Visits Scheduled (Celebree)"
         c_vis.style = 5
         c_vis.y_axis.title = 'CALLS'
@@ -1433,7 +1433,7 @@ else:
     
         # ENROLLED OVERVIEW
     
-        c_enr = LineChart()
+        c_enr = BarChart()
         c_enr.title = "Enrolled (Celebree)"
         c_enr.style = 6
         c_enr.y_axis.title = 'CALLS'
@@ -1453,7 +1453,7 @@ else:
     
         # FTE OVERVIEW
     
-        c_fte = LineChart()
+        c_fte = BarChart()
         c_fte.title = "FTE Enrolled (Celebree)"
         c_fte.style = 7
         c_fte.y_axis.title = 'CALLS'
@@ -1472,7 +1472,7 @@ else:
     
         # GENERAL OVERVIEW ChART (Caliday)
                     
-        ca_all = LineChart()
+        ca_all = BarChart()
         ca_all.title = "Client Conversion Pipeline Chart (Caliday)"
         ca_all.style = 2
         ca_all.y_axis.title = 'CALLS'
@@ -1491,7 +1491,7 @@ else:
     
         # INBOUND OVERVIEW 
     
-        ca_inb = LineChart()
+        ca_inb = BarChart()
         ca_inb.title = "Inbound Calls (Caliday)"
         ca_inb.style = 3
         ca_inb.y_axis.title = 'CALLS'
@@ -1513,7 +1513,7 @@ else:
     
         # OUTBOUND OVERVIEW 
     
-        ca_out = LineChart()
+        ca_out = BarChart()
         ca_out.title = "Outbound Calls (Caliday)"
         ca_out.style = 4
         ca_out.y_axis.title = 'CALLS'
@@ -1533,7 +1533,7 @@ else:
     
         # VISITS SCHEDULED OVERVIEW
     
-        ca_vis = LineChart()
+        ca_vis = BarChart()
         ca_vis.title = "Links Sent (Caliday)"
         ca_vis.style = 5
         ca_vis.y_axis.title = 'CALLS'
@@ -1553,7 +1553,7 @@ else:
     
         # ENROLLED OVERVIEW
     
-        ca_enr = LineChart()
+        ca_enr = BarChart()
         ca_enr.title = "Enrolled (Caliday)"
         ca_enr.style = 6
         ca_enr.y_axis.title = 'CALLS'
